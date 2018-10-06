@@ -20,14 +20,12 @@ export default class Main extends Component {
         if (num == '='){
             return this.validate() && this.getResult();
         }
-        this.setState({number: number+num});
-
+        this.setState({number: number+num, result: eval(number+num)}); 
     };
     getOperator = (opr) => {
         switch(opr){
             case 'C':
-                this.setState({number: ''});
-                this.setState({result: ''});
+                this.setState({number: '', result: ''});
                 break;
             case 'D': 
                 let num =  this.state.number.split('');
@@ -42,7 +40,6 @@ export default class Main extends Component {
                 let lastChar = this.state.number.split('').pop();
                 if(this.operators.indexOf(lastChar) > 0) return;
                 this.setState({number: this.state.number+opr});
-
         }
     };
     getResult(){
